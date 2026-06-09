@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thera Ape Patras — Προσαρμοσμένη Φυσική Αγωγή για Όλους</title>
+<meta name="description" content="Προσαρμοσμένη Φυσική Αγωγή για Όλους — Κέντρο ευεξίας στην Πάτρα">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#faf9f6;
+    --bg-alt:#f0ede8;
+    --text:#1a1a1a;
+    --text-muted:#5a5a5a;
+    --accent:#4a7c6f;
+    --accent-light:#6ba595;
+    --accent-dark:#3a6258;
+    --white:#ffffff;
+    --radius:16px;
+    --radius-sm:10px;
+    --shadow:0 4px 30px rgba(0,0,0,.06);
+    --shadow-lg:0 16px 60px rgba(0,0,0,.1);
+    --transition:all .4s cubic-bezier(.25,.46,.45,.94);
+  }
+  html{scroll-behavior:smooth;font-size:16px}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+
+  /* ─── NAV ─── */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;transition:var(--transition)}
+  nav.scrolled{background:rgba(250,249,246,.92);backdrop-filter:blur(20px);box-shadow:0 1px 20px rgba(0,0,0,.06)}
+  .nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  .logo{display:flex;align-items:center;text-decoration:none}
+  .logo-text{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
+  .logo-text span{color:var(--accent)}
+  .nav-links{display:flex;gap:2rem;list-style:none}
+  .nav-links a{text-decoration:none;color:var(--text-muted);font-size:.875rem;font-weight:500;letter-spacing:.02em;transition:color .3s;position:relative}
+  .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--accent);transition:width .3s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-links a:hover::after{width:100%}
+  .nav-cta{background:var(--accent);color:var(--white);padding:.65rem 1.5rem;border-radius:50px;text-decoration:none;font-size:.85rem;font-weight:600;transition:var(--transition);border:none;cursor:pointer}
+  .nav-cta:hover{background:var(--accent-dark);transform:translateY(-1px);box-shadow:0 6px 20px rgba(74,124,111,.3)}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+  .hamburger span{width:24px;height:2px;background:var(--text);transition:var(--transition);border-radius:2px}
+  .mobile-menu{display:none}
+
+  /* ─── SECTION DOT NAV ─── */
+  .dot-nav{position:fixed;right:2rem;top:50%;transform:translateY(-50%);z-index:999;display:flex;flex-direction:column;gap:14px}
+  .dot-nav a{width:12px;height:12px;border-radius:50%;background:rgba(0,0,0,.15);transition:var(--transition);display:block;position:relative}
+  .dot-nav a.active{background:var(--accent);transform:scale(1.3)}
+  .dot-nav a:hover{background:var(--accent-light);transform:scale(1.2)}
+  .dot-nav a .tooltip{position:absolute;right:24px;top:50%;transform:translateY(-50%);background:var(--text);color:var(--white);padding:4px 12px;border-radius:6px;font-size:.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+  .dot-nav a:hover .tooltip{opacity:1}
+
+  /* ─── HERO ─── */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:8rem 2rem 4rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(74,124,111,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+  .hero-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%}
+  .hero-text{position:relative;z-index:2}
+  .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(74,124,111,.08);color:var(--accent);padding:.4rem 1rem;border-radius:50px;font-size:.8rem;font-weight:600;margin-bottom:1.5rem;letter-spacing:.03em}
+  .hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:1.5rem;letter-spacing:-.02em}
+  .hero h1 em{font-style:italic;color:var(--accent)}
+  .hero p{font-size:1.05rem;color:var(--text-muted);max-width:480px;margin-bottom:2rem;line-height:1.8}
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn-primary{background:var(--accent);color:var(--white);padding:.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem;border:none;cursor:pointer}
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);box-shadow:0 8px 30px rgba(74,124,111,.3)}
+  .btn-secondary{background:transparent;color:var(--text);padding:.85rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:var(--transition);border:2px solid rgba(0,0,0,.1);display:inline-flex;align-items:center;gap:.5rem}
+  .btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .hero-visual{position:relative}
+  .hero-img-wrapper{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:#faf3eb;box-shadow:var(--shadow-lg)}
+  .hero-img-wrapper img{width:80%;height:auto;object-fit:contain}
+  .hero-float-card{position:absolute;background:var(--white);border-radius:var(--radius);padding:1rem 1.25rem;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:.75rem;animation:float 3s ease-in-out infinite}
+  .hero-float-card.card1{bottom:2rem;left:-2rem}
+  .hero-float-card.card2{top:2rem;right:-1rem;animation-delay:1.5s}
+  .float-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+  .float-icon.green{background:rgba(74,124,111,.1)}
+  .float-icon.blue{background:rgba(59,130,246,.1)}
+  .float-label{font-size:.8rem;color:var(--text-muted)}
+  .float-value{font-size:.95rem;font-weight:700}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+  /* ─── SECTIONS COMMON ─── */
+  section{padding:6rem 2rem}
+  .section-header{text-align:center;margin-bottom:4rem}
+  .section-tag{display:inline-block;color:var(--accent);font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.75rem}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-bottom:1rem}
+  .section-sub{color:var(--text-muted);max-width:560px;margin:0 auto;font-size:1rem}
+
+  /* ─── ABOUT ─── */
+  .about{background:var(--bg)}
+  .about-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+  .about-img{border-radius:20px;overflow:hidden;aspect-ratio:3/4;box-shadow:var(--shadow)}
+  .about-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+  .about-img:hover img{transform:scale(1.03)}
+  .about-content h2{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem}
+  .about-content h3{color:var(--accent);font-size:1rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.5rem}
+  .about-content p{color:var(--text-muted);margin-bottom:1.25rem;font-size:.95rem}
+  .about-stats{display:flex;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid rgba(0,0,0,.08)}
+  .stat-item{background:rgba(74,124,111,.05);border:1px solid rgba(74,124,111,.1);border-radius:var(--radius-sm);padding:1rem 1.25rem;flex:1;text-align:center;transition:var(--transition)}
+  .stat-item:hover{background:rgba(74,124,111,.1);transform:translateY(-2px)}
+  .stat-icon{font-size:1.4rem;margin-bottom:.5rem}
+  .stat-item .stat-num{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--accent);margin-bottom:.15rem}
+  .stat-item .stat-label{font-size:.75rem;color:var(--text-muted);line-height:1.3}
+
+  /* ─── MISSION ─── */
+  .mission{background:var(--accent);color:var(--white);position:relative;overflow:hidden}
+  .mission::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);border-radius:50%}
+  .mission-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2}
+  .mission .section-tag{color:rgba(255,255,255,.7)}
+  .mission .section-title{color:var(--white)}
+  .mission p{color:rgba(255,255,255,.85);font-size:1.05rem;line-height:1.9;margin-bottom:1.5rem}
+
+  /* ─── SERVICES ─── */
+  .services{background:var(--bg-alt)}
+  .services-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+  .service-card{background:var(--white);border-radius:var(--radius);padding:2.5rem 2rem;transition:var(--transition);position:relative;overflow:hidden;cursor:default}
+  .service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--accent);transform:scaleX(0);transition:transform .4s;transform-origin:left}
+  .service-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+  .service-card:hover::before{transform:scaleX(1)}
+  .service-icon{width:56px;height:56px;border-radius:14px;background:rgba(74,124,111,.08);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1.5rem}
+  .service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.75rem}
+  .service-card p{color:var(--text-muted);font-size:.9rem;margin-bottom:1.25rem;line-height:1.7}
+  .service-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+  .service-tag{background:var(--bg-alt);padding:.3rem .75rem;border-radius:50px;font-size:.75rem;color:var(--text-muted);font-weight:500}
+
+  /* ─── SCHEDULE ─── */
+  .schedule{background:var(--bg)}
+  .schedule-wrapper{max-width:1000px;margin:0 auto}
+  .schedule-grid{display:grid;grid-template-columns:80px repeat(6,1fr);gap:0;background:var(--white);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+  .schedule-header{background:var(--accent);color:var(--white);padding:.85rem .5rem;text-align:center;font-weight:700;font-size:.8rem;letter-spacing:.03em}
+  .schedule-header:first-child{background:var(--accent-dark);font-size:.7rem}
+  .time-slot{padding:.6rem .4rem;text-align:center;font-size:.75rem;font-weight:600;color:var(--text-muted);background:var(--bg-alt);border-bottom:1px solid rgba(0,0,0,.04);display:flex;align-items:center;justify-content:center}
+  .schedule-cell{padding:.5rem .35rem;border-bottom:1px solid rgba(0,0,0,.04);border-right:1px solid rgba(0,0,0,.04);min-height:60px;display:flex;align-items:center;justify-content:center}
+  .class-block{width:100%;padding:.5rem .4rem;border-radius:var(--radius-sm);text-align:center;font-size:.72rem;font-weight:600;line-height:1.3;cursor:default;transition:var(--transition)}
+  .class-block:hover{transform:scale(1.04)}
+  .class-pilates{background:rgba(74,124,111,.12);color:var(--accent-dark)}
+  .class-pilates-adults{background:rgba(59,130,246,.1);color:#2563eb}
+  .class-special{background:rgba(168,85,247,.1);color:#7c3aed}
+  .class-kids{background:rgba(245,158,11,.1);color:#d97706}
+  .class-elderly{background:rgba(236,72,153,.1);color:#db2777}
+  .class-reformer{background:rgba(20,184,166,.1);color:#0d9488}
+  .schedule-legend{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;margin-top:2rem}
+  .legend-item{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--text-muted)}
+  .legend-dot{width:10px;height:10px;border-radius:50%}
+
+  /* ─── CTA ─── */
+  .cta-section{position:relative;overflow:hidden;background:var(--accent);padding:2.5rem 2rem}
+  .cta-section::before{content:'';position:absolute;top:-40%;left:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.07) 0%,transparent 70%);border-radius:50%}
+  .cta-section::after{content:'';position:absolute;bottom:-30%;right:-15%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);border-radius:50%}
+  .cta-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:2}
+  .cta-inner .cta-icon{display:none}
+  .cta-inner h2{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,3vw,1.8rem);color:var(--white);margin-bottom:.5rem;line-height:1.3}
+  .cta-inner p{color:rgba(255,255,255,.8);font-size:.9rem;max-width:520px;margin:0 auto 1.25rem;line-height:1.6}
+  .cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+  .btn-white{background:var(--white);color:var(--accent);padding:.7rem 1.8rem;border-radius:50px;text-decoration:none;font-weight:700;font-size:.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+  .btn-white:hover{transform:translateY(-3px);box-shadow:0 10px 40px rgba(0,0,0,.2)}
+  .btn-ghost{background:transparent;border:2px solid rgba(255,255,255,.3);color:var(--white);padding:.7rem 1.8rem;border-radius:50px;text-decoration:none;font-weight:600;font-size:.95rem;transition:var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+  .btn-ghost:hover{border-color:var(--white);background:rgba(255,255,255,.1);transform:translateY(-3px)}
+
+  /* ─── CONTACT / FORM ─── */
+  .contact{background:var(--bg-alt)}
+  .contact-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+  .contact-info h2{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:1rem}
+  .contact-info p{color:var(--text-muted);margin-bottom:2rem;font-size:.95rem}
+  .contact-links{display:flex;flex-direction:column;gap:1rem}
+  .contact-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text);padding:1rem 1.25rem;background:var(--white);border-radius:var(--radius-sm);transition:var(--transition)}
+  .contact-link:hover{transform:translateX(6px);box-shadow:var(--shadow)}
+  .contact-link-icon{width:44px;height:44px;border-radius:12px;background:rgba(74,124,111,.08);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .contact-link-text{font-size:.85rem;color:var(--text-muted)}
+  .contact-link-value{font-weight:600;font-size:.95rem}
+  .socials{display:flex;gap:.75rem;margin-top:2rem}
+  .social-btn{width:44px;height:44px;border-radius:12px;background:var(--white);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:var(--transition)}
+  .social-btn svg{width:20px;height:20px;fill:var(--text-muted);transition:fill .3s}
+  .social-btn:hover{background:var(--accent);transform:translateY(-3px);box-shadow:0 6px 20px rgba(74,124,111,.25)}
+  .social-btn:hover svg{fill:var(--white)}
+
+  .form-card{background:var(--white);border-radius:var(--radius);padding:2.5rem;box-shadow:var(--shadow)}
+  .form-card h3{font-size:1.3rem;font-weight:700;margin-bottom:.5rem}
+  .form-card p{color:var(--text-muted);font-size:.85rem;margin-bottom:2rem}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+  .form-group{display:flex;flex-direction:column;gap:.4rem}
+  .form-group.full{grid-column:1/-1}
+  .form-group label{font-size:.8rem;font-weight:600;color:var(--text)}
+  .form-group input,.form-group textarea,.form-group select{padding:.8rem 1rem;border:1.5px solid rgba(0,0,0,.08);border-radius:var(--radius-sm);font-family:inherit;font-size:.9rem;transition:var(--transition);background:var(--bg);resize:none}
+  .form-group input:focus,.form-group textarea:focus,.form-group select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(74,124,111,.1)}
+  .form-submit{width:100%;margin-top:1.5rem}
+
+  /* ─── SEND MODAL ─── */
+  .send-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+  .send-overlay.active{opacity:1;pointer-events:all}
+  .send-modal{background:var(--white);border-radius:20px;padding:2.5rem;max-width:420px;width:90%;box-shadow:0 24px 80px rgba(0,0,0,.2);transform:translateY(20px) scale(.96);transition:transform .35s cubic-bezier(.25,.46,.45,.94);position:relative}
+  .send-overlay.active .send-modal{transform:translateY(0) scale(1)}
+  .send-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--text-muted);transition:color .2s;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%}
+  .send-modal-close:hover{color:var(--text);background:var(--bg-alt)}
+  .send-modal h3{font-family:'Playfair Display',serif;font-size:1.4rem;margin-bottom:.4rem}
+  .send-modal p{color:var(--text-muted);font-size:.85rem;margin-bottom:1.5rem;line-height:1.5}
+  .send-options{display:flex;flex-direction:column;gap:.75rem}
+  .send-option{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border-radius:14px;border:1.5px solid rgba(0,0,0,.08);text-decoration:none;color:var(--text);transition:all .25s;cursor:pointer;background:var(--white)}
+  .send-option:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+  .send-option-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .send-option-icon.whatsapp{background:#25D366;color:#fff}
+  .send-option-icon.viber{background:#7360F2;color:#fff}
+  .send-option-icon.sms{background:#FF9500;color:#fff}
+  .send-option-icon.emailopt{background:var(--accent);color:#fff}
+  .send-option-icon svg{width:22px;height:22px;fill:currentColor}
+  .send-option-text{display:flex;flex-direction:column}
+  .send-option-label{font-weight:600;font-size:.95rem}
+  .send-option-desc{font-size:.75rem;color:var(--text-muted);margin-top:2px}
+  .send-option-arrow{margin-left:auto;color:var(--text-muted);font-size:1.1rem;transition:transform .2s}
+  .send-option:hover .send-option-arrow{transform:translateX(3px);color:var(--accent)}
+  .send-success{text-align:center;padding:1rem 0}
+  .send-success-icon{font-size:3rem;margin-bottom:1rem}
+  .send-success h4{font-size:1.1rem;margin-bottom:.5rem}
+  .send-success p{color:var(--text-muted);font-size:.85rem}
+
+  /* ─── FOOTER ─── */
+  footer{background:var(--text);color:rgba(255,255,255,.6);padding:3.5rem 2rem 2rem}
+  .footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+  .footer-top{display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:1rem}
+  .footer-logo{display:flex;align-items:center;gap:.5rem}
+  .footer-logo svg{height:32px;width:auto}
+  .footer-logo-text{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--white)}
+  .footer-logo-text span{color:var(--accent-light)}
+  .footer-socials{display:flex;gap:.75rem}
+  .footer-social{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:var(--transition)}
+  .footer-social:hover{background:var(--accent);transform:translateY(-3px);box-shadow:0 6px 20px rgba(74,124,111,.3)}
+  .footer-social svg{width:18px;height:18px;fill:rgba(255,255,255,.7)}
+  .footer-social:hover svg{fill:var(--white)}
+  .footer-divider{width:100%;height:1px;background:rgba(255,255,255,.08)}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;width:100%;flex-wrap:wrap;gap:.5rem}
+  footer p{font-size:.8rem}
+  .footer-links{display:flex;gap:1.5rem}
+  .footer-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.8rem;transition:color .3s}
+  .footer-links a:hover{color:var(--accent-light)}
+
+  /* ─── REVIEWS ─── */
+  .reviews{background:var(--bg)}
+  .reviews-top{display:flex;align-items:center;justify-content:center;gap:2rem;margin-bottom:3rem;flex-wrap:wrap}
+  .reviews-badge{background:var(--white);border-radius:var(--radius);padding:1.5rem 2rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:1.25rem}
+  .reviews-badge-icon{width:48px;height:48px}
+  .reviews-score{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--text);line-height:1}
+  .reviews-score-sub{font-size:.8rem;color:var(--text-muted);margin-top:.2rem}
+  .reviews-stars{color:#fbbc04;font-size:1.2rem;letter-spacing:2px}
+  .reviews-cta{display:inline-flex;align-items:center;gap:.5rem;background:var(--white);border:1.5px solid rgba(0,0,0,.08);padding:.7rem 1.25rem;border-radius:50px;text-decoration:none;color:var(--text);font-size:.85rem;font-weight:600;transition:var(--transition)}
+  .reviews-cta:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .reviews-grid{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+  .review-card{background:var(--white);border-radius:var(--radius);padding:2rem;box-shadow:var(--shadow);transition:var(--transition)}
+  .review-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .review-header{display:flex;align-items:center;gap:.85rem;margin-bottom:1rem}
+  .review-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--white);flex-shrink:0}
+  .review-name{font-weight:700;font-size:.95rem}
+  .review-source{font-size:.75rem;color:var(--text-muted);display:flex;align-items:center;gap:.3rem}
+  .review-source svg{width:12px;height:12px}
+  .review-rating{display:flex;align-items:center;gap:.75rem;margin-bottom:.75rem}
+  .review-rating .stars{color:#fbbc04;font-size:.95rem;letter-spacing:1px}
+  .review-rating .date{font-size:.75rem;color:var(--text-muted)}
+  .review-text{font-size:.9rem;color:var(--text-muted);line-height:1.7}
+  .review-powered{text-align:center;margin-top:2rem;font-size:.75rem;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:.4rem}
+  .review-powered svg{width:14px;height:14px}
+  @media(max-width:768px){.reviews-grid{grid-template-columns:1fr}}
+
+  /* ─── CHAT WIDGET ─── */
+  .chat-fab{position:fixed;bottom:2rem;right:2rem;z-index:1001;width:60px;height:60px;border-radius:50%;background:var(--accent);color:var(--white);border:none;cursor:pointer;box-shadow:0 6px 30px rgba(74,124,111,.4);transition:var(--transition);display:flex;align-items:center;justify-content:center}
+  .chat-fab:hover{background:var(--accent-dark);transform:scale(1.08);box-shadow:0 8px 40px rgba(74,124,111,.5)}
+  .chat-fab svg{width:26px;height:26px;fill:var(--white);transition:var(--transition)}
+  .chat-fab.open svg.icon-chat{display:none}
+  .chat-fab:not(.open) svg.icon-close{display:none}
+  .chat-panel{position:fixed;bottom:6.5rem;right:2rem;z-index:1000;width:370px;max-height:500px;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow-lg);display:none;flex-direction:column;overflow:hidden;animation:slideUp .3s ease}
+  .chat-panel.open{display:flex}
+  @keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .chat-header{background:var(--accent);color:var(--white);padding:1.25rem 1.5rem;display:flex;align-items:center;gap:.75rem}
+  .chat-avatar{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .chat-header-text h4{font-size:.95rem;font-weight:700;margin-bottom:.1rem}
+  .chat-header-text p{font-size:.75rem;opacity:.8}
+  .chat-body{flex:1;overflow-y:auto;padding:1.25rem;display:flex;flex-direction:column;gap:.75rem;max-height:300px}
+  .chat-msg{max-width:85%;padding:.75rem 1rem;border-radius:14px;font-size:.85rem;line-height:1.5}
+  .chat-msg.them{background:var(--bg-alt);align-self:flex-start;border-bottom-left-radius:4px}
+  .chat-msg.me{background:var(--accent);color:var(--white);align-self:flex-end;border-bottom-right-radius:4px}
+  .chat-input-area{display:flex;gap:.5rem;padding:.75rem 1rem;border-top:1px solid rgba(0,0,0,.06)}
+  .chat-input{flex:1;border:1.5px solid rgba(0,0,0,.08);border-radius:50px;padding:.6rem 1rem;font-family:inherit;font-size:.85rem;outline:none;transition:var(--transition)}
+  .chat-input:focus{border-color:var(--accent)}
+  .chat-send{width:38px;height:38px;border-radius:50%;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0}
+  .chat-send:hover{background:var(--accent-dark)}
+  .chat-send svg{width:16px;height:16px;fill:var(--white)}
+  .typing-dots span{animation:blink 1.4s infinite;font-size:1.5rem;line-height:1;letter-spacing:2px}
+  .typing-dots span:nth-child(2){animation-delay:.2s}
+  .typing-dots span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
+  @media(max-width:480px){.chat-panel{right:.75rem;left:.75rem;width:auto;bottom:5.5rem}.chat-fab{width:52px;height:52px;bottom:1.25rem;right:1.25rem}}
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .reveal{opacity:0;transform:translateY(30px);transition:all .8s cubic-bezier(.25,.46,.45,.94)}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  /* ─── RESPONSIVE ─── */
+  @media(max-width:968px){
+    .hero-inner,.about-grid,.cta-inner,.contact-grid{grid-template-columns:1fr}
+    .hero-visual{order:-1}
+    .hero-float-card{display:none}
+    .services-grid{grid-template-columns:1fr}
+    .schedule-grid{grid-template-columns:60px repeat(6,1fr);font-size:.7rem}
+    .nav-links{display:none}
+    .nav-cta.desktop{display:none}
+    .hamburger{display:flex}
+    .mobile-menu.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--bg);z-index:998;padding:5rem 2rem 2rem;gap:1.5rem}
+    .mobile-menu a{font-size:1.2rem;text-decoration:none;color:var(--text);font-weight:600}
+    .dot-nav{display:none}
+    .form-row{grid-template-columns:1fr}
+    .about-stats{flex-wrap:wrap;gap:1.5rem}
+  }
+  @media(max-width:600px){
+    .schedule-grid{grid-template-columns:50px repeat(6,1fr)}
+    .schedule-header,.time-slot,.class-block{font-size:.6rem;padding:.4rem .2rem}
+    .schedule-cell{min-height:45px;padding:.3rem .15rem}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">
+      <span class="logo-text">Thera<span>.</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">Ποιοι Είμαστε</a></li>
+      <li><a href="#mission">Αποστολή</a></li>
+      <li><a href="#services">Υπηρεσίες</a></li>
+      <li><a href="#schedule">Πρόγραμμα</a></li>
+      <li><a href="#contact">Επικοινωνία</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta desktop">Κλείσε Ραντεβού</a>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu">
+  <a href="#about" onclick="this.parentElement.classList.remove('open')">Ποιοι Είμαστε</a>
+  <a href="#mission" onclick="this.parentElement.classList.remove('open')">Αποστολή</a>
+  <a href="#services" onclick="this.parentElement.classList.remove('open')">Υπηρεσίες</a>
+  <a href="#schedule" onclick="this.parentElement.classList.remove('open')">Πρόγραμμα</a>
+  <a href="#contact" onclick="this.parentElement.classList.remove('open')">Επικοινωνία</a>
+  <a href="#contact" class="btn-primary" onclick="this.parentElement.classList.remove('open')">Κλείσε Ραντεβού</a>
+</div>
+
+<!-- DOT NAV -->
+<div class="dot-nav">
+  <a href="#hero" class="active" data-section="hero"><span class="tooltip">Αρχική</span></a>
+  <a href="#about" data-section="about"><span class="tooltip">Ποιοι Είμαστε</span></a>
+  <a href="#mission" data-section="mission"><span class="tooltip">Αποστολή</span></a>
+  <a href="#services" data-section="services"><span class="tooltip">Υπηρεσίες</span></a>
+  <a href="#schedule" data-section="schedule"><span class="tooltip">Πρόγραμμα</span></a>
+  <a href="#reviews" data-section="reviews"><span class="tooltip">Κριτικές</span></a>
+  <a href="#cta" data-section="cta"><span class="tooltip">Ξεκινήστε</span></a>
+  <a href="#contact" data-section="contact"><span class="tooltip">Επικοινωνία</span></a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">&#9679; Κέντρο Ευεξίας στην Πάτρα</div>
+      <h1>Προσαρμοσμένη Φυσική Αγωγή <em>για Όλους</em></h1>
+      <p>Κίνηση – Φροντίδα – Ενσωμάτωση. Εξειδικευμένη θεραπευτική άσκηση, νευρομυϊκή επανεκπαίδευση και εκγύμναση για κάθε ηλικία και ανάγκη.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Κλείσε Ραντεβού &rarr;</a>
+        <a href="#services" class="btn-secondary">Οι Υπηρεσίες μας</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img-wrapper">
+        <img src="https://thera-ape.gr/assets/images/image16.jpg?v=3712b847" alt="Thera — Advanced Physical Education" loading="eager">
+      </div>
+      <div class="hero-float-card card1">
+        <div class="float-icon green">&#x1F3CB;</div>
+        <div>
+          <div class="float-label">Εξειδικευμένα</div>
+          <div class="float-value">Προγράμματα</div>
+        </div>
+      </div>
+      <div class="hero-float-card card2">
+        <div class="float-icon blue">&#x2764;</div>
+        <div>
+          <div class="float-label">Προσωπική</div>
+          <div class="float-value">Προσέγγιση</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-img reveal">
+      <img src="https://thera-ape.gr/assets/images/image05.jpg?v=3712b847" alt="Κορνηλία Παΐζη" loading="lazy">
+    </div>
+    <div class="about-content reveal">
+      <h3>Γνωρίστε την Ιδρύτρια</h3>
+      <h2>Κορνηλία Παΐζη</h2>
+      <p>Απόφοιτη ΤΕΦΑΑ με ειδικότητα στην Ειδική Αγωγή και μεταπτυχιακές σπουδές στην Άσκηση και Υγεία. Μέσα από την επιστημονική κατάρτιση και την προσωπική αφοσίωση, δημιούργησε το Thera με στόχο να προσφέρει έναν ασφαλή, υποστηρικτικό και προσβάσιμο χώρο άσκησης.</p>
+      <p>Για άτομα με κινητικές δυσκολίες, ΑμεΑ, ηλικιωμένους και ανθρώπους που χρειάζονται μια πιο εξειδικευμένη προσέγγιση στην κίνηση και την ευεξία.</p>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-icon">&#x1F393;</div>
+          <div class="stat-num">Πτυχίο ΤΕΦΑΑ</div>
+          <div class="stat-label">Φυσική Αγωγή &<br>Αθλητισμός</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">&#x1F4DA;</div>
+          <div class="stat-num">Μεταπτυχιακό MSc</div>
+          <div class="stat-label">Άσκηση & Υγεία</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-icon">&#x2764;</div>
+          <div class="stat-num">Ειδικότητα</div>
+          <div class="stat-label">Ειδική Αγωγή &<br>Προσαρμοσμένη Φ.Α.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="mission-inner reveal">
+    <div class="section-tag">Αποστολή & Όραμα</div>
+    <h2 class="section-title">Η κίνηση είναι δικαίωμα για όλους.</h2>
+    <p>Δημιουργήσαμε έναν χώρο όπου κάθε άνθρωπος μπορεί να νιώθει ασφάλεια, αποδοχή και στήριξη, ανεξάρτητα από τις δυσκολίες ή τις ανάγκες του.</p>
+    <p>Μέσα από εξατομικευμένη προσέγγιση, ενισχύουμε την καθημερινή λειτουργικότητα, την αυτοπεποίθηση και τη συνολική ευεξία. Οραματιζόμαστε ένα περιβάλλον όπου η άσκηση δεν είναι απλώς μια διαδικασία, αλλά ένα μέσο εξέλιξης, ανεξαρτησίας και ποιότητας ζωής.</p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-header">
+    <div class="section-tag">Υπηρεσίες</div>
+    <h2 class="section-title">Οι Υπηρεσίες μας</h2>
+    <p class="section-sub">Εξατομικευμένα προγράμματα σχεδιασμένα για κάθε ανάγκη</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">&#x1F476;</div>
+      <h3>Προσαρμοσμένη Φυσική Αγωγή για Παιδιά</h3>
+      <p>Διασκεδαστικές δραστηριότητες σχεδιασμένες για παιδιά όλων των ικανοτήτων. Ασκήσεις μέσα από παιχνίδι, αναπτυξιακή υποστήριξη και κοινωνική αλληλεπίδραση.</p>
+      <div class="service-tags">
+        <span class="service-tag">Παιχνίδι</span>
+        <span class="service-tag">Ανάπτυξη</span>
+        <span class="service-tag">Κοινωνικοποίηση</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">&#x1F9D3;</div>
+      <h3>Άσκηση για Ηλικιωμένους</h3>
+      <p>Προγράμματα με στόχο την ενδυνάμωση, την ισορροπία και την ενίσχυση της αυτόνομης διαβίωσης. Ενίσχυση αυτοπεποίθησης με κατάλληλο εξοπλισμό & Reformer.</p>
+      <div class="service-tags">
+        <span class="service-tag">Ενδυνάμωση</span>
+        <span class="service-tag">Ισορροπία</span>
+        <span class="service-tag">Reformer</span>
+      </div>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">&#x1F9D1;</div>
+      <h3>Προσαρμοσμένη Φυσική Αγωγή για Ενήλικες</h3>
+      <p>Ενήλικες στο φάσμα του αυτισμού, με διάσπαση προσοχής ή κινητικές δυσκολίες. Εξατομικευμένος τρόπος, σύμφωνα με τις ανάγκες, δυνατότητες και στόχους.</p>
+      <div class="service-tags">
+        <span class="service-tag">Εξατομίκευση</span>
+        <span class="service-tag">Αυτισμός</span>
+        <span class="service-tag">Κινητικότητα</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="schedule" id="schedule">
+  <div class="section-header">
+    <div class="section-tag">Πρόγραμμα</div>
+    <h2 class="section-title">Εβδομαδιαίο Πρόγραμμα</h2>
+    <p class="section-sub">Βρείτε το μάθημα που σας ταιριάζει</p>
+  </div>
+  <div class="schedule-wrapper reveal">
+    <div class="schedule-grid">
+      <!-- Header Row -->
+      <div class="schedule-header">Ώρα</div>
+      <div class="schedule-header">Δευτέρα</div>
+      <div class="schedule-header">Τρίτη</div>
+      <div class="schedule-header">Τετάρτη</div>
+      <div class="schedule-header">Πέμπτη</div>
+      <div class="schedule-header">Παρασκευή</div>
+      <div class="schedule-header">Σάββατο</div>
+
+      <!-- 10:00-11:00 -->
+      <div class="time-slot">10:00–11:00</div>
+      <div class="schedule-cell"><div class="class-block class-elderly">Ηλικιωμένοι</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-elderly">Ηλικιωμένοι</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-elderly">Ηλικιωμένοι</div></div>
+      <div class="schedule-cell"></div>
+
+      <!-- 11:00-12:00 -->
+      <div class="time-slot">11:00–12:00</div>
+      <div class="schedule-cell"><div class="class-block class-reformer">Reformer</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-reformer">Reformer</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-reformer">Reformer</div></div>
+      <div class="schedule-cell"></div>
+
+      <!-- 17:00-18:00 -->
+      <div class="time-slot">17:00–18:00</div>
+      <div class="schedule-cell"><div class="class-block class-kids">Παιδιά ΑμΕΑ</div></div>
+      <div class="schedule-cell"><div class="class-block class-kids">Παιδιά ΑμΕΑ</div></div>
+      <div class="schedule-cell"><div class="class-block class-kids">Παιδιά ΑμΕΑ</div></div>
+      <div class="schedule-cell"><div class="class-block class-kids">Παιδιά ΑμΕΑ</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-kids">Παιδιά ΑμΕΑ</div></div>
+
+      <!-- 18:00-19:00 -->
+      <div class="time-slot">18:00–19:00</div>
+      <div class="schedule-cell"><div class="class-block class-pilates">Pilates</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates">Pilates</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates">Pilates</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates">Pilates</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates">Pilates</div></div>
+      <div class="schedule-cell"></div>
+
+      <!-- 19:00-20:00 -->
+      <div class="time-slot">19:00–20:00</div>
+      <div class="schedule-cell"><div class="class-block class-pilates-adults">Pilates Ενηλίκων</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates-adults">Pilates Ενηλίκων</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates-adults">Pilates Ενηλίκων</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates-adults">Pilates Ενηλίκων</div></div>
+      <div class="schedule-cell"><div class="class-block class-pilates-adults">Pilates Ενηλίκων</div></div>
+      <div class="schedule-cell"></div>
+
+      <!-- 20:00-21:00 -->
+      <div class="time-slot">20:00–21:00</div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-special">Ειδική Αγωγή</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"><div class="class-block class-special">Ειδική Αγωγή</div></div>
+      <div class="schedule-cell"></div>
+      <div class="schedule-cell"></div>
+    </div>
+    <div class="schedule-legend">
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(74,124,111,.5)"></div>Pilates</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(59,130,246,.5)"></div>Pilates Ενηλίκων</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(168,85,247,.5)"></div>Ειδική Αγωγή</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(245,158,11,.5)"></div>Παιδιά ΑμΕΑ</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(236,72,153,.5)"></div>Ηλικιωμένοι</div>
+      <div class="legend-item"><div class="legend-dot" style="background:rgba(20,184,166,.5)"></div>Reformer</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="section-header">
+    <div class="section-tag">Κριτικές</div>
+    <h2 class="section-title">Τι Λένε για Εμάς</h2>
+    <p class="section-sub">Αξιολογήσεις από πραγματικούς πελάτες μας στο Google</p>
+  </div>
+  <div class="reviews-top">
+    <div class="reviews-badge">
+      <svg class="reviews-badge-icon" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.001-.001 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+      <div>
+        <div class="reviews-score">5.0</div>
+        <div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="reviews-score-sub">Google Reviews</div>
+      </div>
+    </div>
+    <a href="https://www.google.com/maps/place/THERAAPE" target="_blank" class="reviews-cta">+ Γράψε μια κριτική</a>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div class="review-avatar" style="background:#7c4dff">L</div>
+        <div>
+          <div class="review-name">Lenia Skiada</div>
+          <div class="review-source">
+            <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.001-.001 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+            Google Review
+          </div>
+        </div>
+      </div>
+      <div class="review-rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="date">5/5 · πριν 1 μήνα</span>
+      </div>
+      <div class="review-text">Εξαιρετικός χώρος με επαγγελματική προσέγγιση. Η Κορνηλία είναι πολύ καταρτισμένη και αφοσιωμένη στη δουλειά της. Συστήνω ανεπιφύλακτα!</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-header">
+        <div class="review-avatar" style="background:#e91e63">I</div>
+        <div>
+          <div class="review-name">Ioanna Nikolaidou</div>
+          <div class="review-source">
+            <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.001-.001 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+            Google Review
+          </div>
+        </div>
+      </div>
+      <div class="review-rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="date">5/5 · πριν 2 μήνες</span>
+      </div>
+      <div class="review-text">Ξεκίνησα ενδυνάμωση κορμού μετά από παρότρυνση γιατρού και έμεινα πολύ ικανοποιημένη. Το Thera με έχει βοηθήσει πάρα πολύ όλο αυτό το διάστημα. Υπήρχε ξεκάθαρα επαγγελματισμός και ανθρώπινη προσέγγιση σε κάθε συνεδρία.</div>
+    </div>
+  </div>
+  <div class="review-powered">
+    <svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 12.955 4 4 12.955 4 24s8.955 20 20 20 20-8.955 20-20c0-1.341-.138-2.65-.389-3.917z"/><path fill="#FF3D00" d="M6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4 16.318 4 9.656 8.337 6.306 14.691z"/><path fill="#4CAF50" d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.91 11.91 0 0124 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44z"/><path fill="#1976D2" d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 01-4.087 5.571l.001-.001 6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917z"/></svg>
+    Powered by Google Reviews
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner reveal">
+    <span class="cta-icon">&#x1F331;</span>
+    <h2>Έτοιμοι να Ξεκινήσετε<br>το Ταξίδι σας;</h2>
+    <p>Κάντε το πρώτο βήμα προς τη βελτίωση της καθημερινότητας. Προγραμματίστε ένα ραντεβού για να συζητήσουμε τις ανάγκες και να προσδιορίσουμε τους στόχους σας.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-white">Κλείσε Ραντεβού &rarr;</a>
+      <a href="tel:+302610325266" class="btn-ghost">&#x1F4DE; 2610 325 266</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <div class="section-tag">Επικοινωνία</div>
+      <h2>Θα σε καλέσουμε εμείς!</h2>
+      <p>Κέντρο ευεξίας που ειδικεύεται στη θεραπευτική άσκηση, τη νευρομυϊκή συναρμογή και την προσαρμοσμένη φυσική αγωγή.</p>
+      <div class="contact-links">
+        <a href="tel:+302610325266" class="contact-link">
+          <div class="contact-link-icon">&#x1F4DE;</div>
+          <div>
+            <div class="contact-link-text">Τηλέφωνο</div>
+            <div class="contact-link-value">2610 325 266</div>
+          </div>
+        </a>
+        <a href="mailto:info@thera-ape.gr" class="contact-link">
+          <div class="contact-link-icon">&#x1F4E9;</div>
+          <div>
+            <div class="contact-link-text">Email</div>
+            <div class="contact-link-value">info@thera-ape.gr</div>
+          </div>
+        </a>
+        <a href="https://maps.google.com/?q=Miaouli+64+Patra" target="_blank" class="contact-link">
+          <div class="contact-link-icon">&#x1F4CD;</div>
+          <div>
+            <div class="contact-link-text">Διεύθυνση</div>
+            <div class="contact-link-value">Μιαούλη 64, Πάτρα 262 22</div>
+          </div>
+        </a>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/thera_ape_patras/" target="_blank" class="social-btn" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61581005033032" target="_blank" class="social-btn" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@thera_ape_patras" target="_blank" class="social-btn" title="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <h3>Συμπλήρωσε τη φόρμα</h3>
+      <p>Θα επικοινωνήσουμε μαζί σου το συντομότερο δυνατό.</p>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fname">Όνομα</label>
+            <input type="text" id="fname" name="fname" placeholder="Το όνομά σου" required>
+          </div>
+          <div class="form-group">
+            <label for="lname">Επώνυμο</label>
+            <input type="text" id="lname" name="lname" placeholder="Το επώνυμό σου" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Τηλέφωνο</label>
+            <input type="tel" id="phone" name="phone" placeholder="69XXXXXXXX" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="email@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="service">Ενδιαφέρον για</label>
+            <select id="service" name="service">
+              <option value="">Επιλέξτε υπηρεσία</option>
+              <option value="kids">Προσαρμοσμένη Φ.Α. Παιδιών</option>
+              <option value="adults">Προσαρμοσμένη Φ.Α. Ενηλίκων</option>
+              <option value="elderly">Άσκηση Ηλικιωμένων</option>
+              <option value="pilates">Pilates</option>
+              <option value="special">Ειδική Αγωγή</option>
+              <option value="reformer">Reformer</option>
+              <option value="other">Άλλο</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="message">Μήνυμα</label>
+            <textarea id="message" name="message" rows="4" placeholder="Πείτε μας λίγα λόγια για τις ανάγκες σας..."></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-primary form-submit">Αποστολή &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SEND MODAL -->
+<div class="send-overlay" id="sendOverlay" onclick="closeSendModal(event)">
+  <div class="send-modal" id="sendModal">
+    <button class="send-modal-close" onclick="closeSendModal(event,true)">&times;</button>
+    <h3>Πώς θέλεις να στείλεις;</h3>
+    <p>Επίλεξε τρόπο επικοινωνίας — θα σου ετοιμάσουμε το μήνυμα αυτόματα.</p>
+    <div class="send-options">
+      <a class="send-option" id="optWhatsApp" href="#" onclick="sendVia('whatsapp',event)">
+        <div class="send-option-icon whatsapp">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </div>
+        <div class="send-option-text">
+          <span class="send-option-label">WhatsApp</span>
+          <span class="send-option-desc">Άμεση συνομιλία μέσω WhatsApp</span>
+        </div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" id="optViber" href="#" onclick="sendVia('viber',event)">
+        <div class="send-option-icon viber">
+          <svg viewBox="0 0 24 24"><path d="M11.4 0C9.473.028 5.333.344 3.243 2.26 1.643 3.84 1.073 6.16 1.013 9.02c-.06 2.86-.14 8.22 5.04 9.78h.01l-.01 2.24s-.07.9.56 1.08c.76.24 1.2-.49 1.93-1.27.4-.43.95-1.06 1.36-1.54 3.74.31 6.62-.4 6.95-.51.75-.25 5.01-.79 5.7-6.44.72-5.81-.34-9.49-2.2-11.15C19.31.6 15.97.027 13.6.002c-.3-.003-.59-.003-.87-.003h-1.33zm.63 1.74h1.07c2.01.02 5.02.42 6.67 1.93 1.53 1.32 2.33 4.56 1.72 9.5-.55 4.5-3.85 4.97-4.48 5.18-.27.09-2.77.7-5.88.53 0 0-2.33 2.81-3.05 3.54-.12.12-.26.17-.35.15-.13-.04-.17-.18-.17-.4l.03-3.85c-4.24-1.27-3.99-5.6-3.95-7.97.05-2.37.49-4.37 1.79-5.66C6.84 3.25 10.03 1.78 12.03 1.74zM11.12 4.95a.5.5 0 00-.04 1 5.65 5.65 0 014.17 1.82c.85.87 1.38 2.25 1.32 3.93a.5.5 0 001 .03c.07-1.9-.53-3.5-1.59-4.58a6.64 6.64 0 00-4.83-2.2h-.03zm.38 2.07a.5.5 0 00-.06 1 3.42 3.42 0 012.62 1.24c.53.61.72 1.39.68 2.12a.5.5 0 001 .05c.05-.93-.19-1.95-.87-2.73a4.42 4.42 0 00-3.34-1.68h-.03zm-2.3 1.3c-.22-.01-.44.08-.6.28l-.5.56c-.14.15-.28.4-.19.66.38 1.08 1.13 2.18 2.2 3.2l.04.04c1.29 1.12 2.4 1.69 3.56 2.01.25.07.48-.07.62-.22l.48-.53c.28-.31.27-.72-.05-.97l-1.42-1a.54.54 0 00-.62.04l-.55.48c-.12.1-.3.1-.43.03l-.09-.05c-.53-.32-1.15-.78-1.72-1.4-.57-.62-.99-1.26-1.3-1.8l-.05-.1c-.06-.12-.05-.3.06-.42l.5-.54c.17-.19.21-.46.06-.64l-1.06-1.38a.52.52 0 00-.44-.23zm3.5.75a.5.5 0 00-.08 1c.52.04.88.25 1.1.51.22.26.34.62.33 1.04a.5.5 0 001 .02c.01-.59-.16-1.16-.52-1.59-.37-.43-.91-.73-1.62-.8.14.02.07.02-.08 0l-.13-.18z"/></svg>
+        </div>
+        <div class="send-option-text">
+          <span class="send-option-label">Viber</span>
+          <span class="send-option-desc">Στείλε μήνυμα μέσω Viber</span>
+        </div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" id="optSMS" href="#" onclick="sendVia('sms',event)">
+        <div class="send-option-icon sms">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+        </div>
+        <div class="send-option-text">
+          <span class="send-option-label">SMS</span>
+          <span class="send-option-desc">Κλασικό γραπτό μήνυμα</span>
+        </div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" id="optEmail" href="#" onclick="sendVia('email',event)">
+        <div class="send-option-icon emailopt">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
+        <div class="send-option-text">
+          <span class="send-option-label">Email</span>
+          <span class="send-option-desc">Αποστολή email στην Κορνηλία</span>
+        </div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <span class="footer-logo-text">Thera<span>.</span></span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/thera_ape_patras/" target="_blank" class="footer-social" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61581005033032" target="_blank" class="footer-social" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@thera_ape_patras" target="_blank" class="footer-social" title="TikTok">
+          <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Thera Ape Patras. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#services">Υπηρεσίες</a>
+        <a href="#schedule">Πρόγραμμα</a>
+        <a href="#contact">Επικοινωνία</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- CHAT WIDGET -->
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Chat">
+  <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/><path d="M7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+  <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+</button>
+<div class="chat-panel" id="chatPanel">
+  <div class="chat-header">
+    <div class="chat-avatar">&#x1F44B;</div>
+    <div class="chat-header-text">
+      <h4>Thera Ape</h4>
+      <p>Συνήθως απαντάμε σε λίγα λεπτά</p>
+    </div>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg them">Γεια σου! Πώς μπορούμε να σε βοηθήσουμε; Ρώτησέ μας ό,τι θέλεις για τις υπηρεσίες μας.</div>
+  </div>
+  <div class="chat-input-area">
+    <input type="text" class="chat-input" id="chatInput" placeholder="Γράψε μήνυμα..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">
+      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// Navbar scroll effect
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Dot nav active state
+const sections = document.querySelectorAll('section');
+const dots = document.querySelectorAll('.dot-nav a');
+
+const observerOptions = { rootMargin: '-40% 0px -60% 0px' };
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      dots.forEach(d => d.classList.remove('active'));
+      const active = document.querySelector(`.dot-nav a[data-section="${entry.target.id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, observerOptions);
+sections.forEach(s => sectionObserver.observe(s));
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => revealObserver.observe(r));
+
+// Form submit → show send modal
+const THERA_PHONE = '306975946378'; // international format no +
+const THERA_EMAIL = 'info@thera-ape.gr';
+let pendingFormData = null;
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const f = e.target;
+  const fname = f.fname.value.trim();
+  const lname = f.lname.value.trim();
+  const phone = f.phone.value.trim();
+  const email = f.email.value.trim();
+  const serviceEl = f.service;
+  const serviceName = serviceEl.options[serviceEl.selectedIndex]?.text || '';
+  const message = f.message.value.trim();
+
+  // Build the auto-message
+  let msg = `Γεια σας! Είμαι ο/η ${fname} ${lname}`;
+  if (serviceName && serviceName !== 'Επιλέξτε υπηρεσία') msg += ` και ενδιαφέρομαι για ${serviceName}`;
+  msg += '.';
+  if (message) msg += `\n${message}`;
+  msg += `\n\nΤηλ: ${phone}`;
+  if (email) msg += `\nEmail: ${email}`;
+
+  pendingFormData = { fname, lname, phone, email, serviceName, message, fullMsg: msg };
+
+  // Show modal
+  document.getElementById('sendOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSendModal(e, force) {
+  if (force || e.target.id === 'sendOverlay') {
+    document.getElementById('sendOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function sendVia(method, e) {
+  e.preventDefault();
+  if (!pendingFormData) return;
+  const d = pendingFormData;
+  const msg = encodeURIComponent(d.fullMsg);
+
+  switch(method) {
+    case 'whatsapp':
+      window.open(`https://wa.me/${THERA_PHONE}?text=${msg}`, '_blank');
+      break;
+    case 'viber':
+      window.open(`viber://chat?number=%2B${THERA_PHONE}&draft=${msg}`, '_blank');
+      break;
+    case 'sms':
+      // iOS: sms:+number&body=  /  Android: sms:+number?body=
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      const sep = isIOS ? '&' : '?';
+      window.open(`sms:+${THERA_PHONE}${sep}body=${msg}`, '_self');
+      break;
+    case 'email':
+      // Send directly via FormSubmit.co — no email client needed
+      fetch(`https://formsubmit.co/ajax/${THERA_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _subject: `Νέο ραντεβού — ${d.fname} ${d.lname}`,
+          'Όνομα': `${d.fname} ${d.lname}`,
+          'Τηλέφωνο': d.phone,
+          'Email': d.email || '—',
+          'Υπηρεσία': d.serviceName || '—',
+          'Μήνυμα': d.message || '—'
+        })
+      }).catch(() => {});
+      break;
+  }
+
+  // Show success state
+  const modal = document.getElementById('sendModal');
+  if (method === 'email') {
+    modal.innerHTML = `
+      <div class="send-success">
+        <div class="send-success-icon">&#x2705;</div>
+        <h4>Τα στοιχεία σου στάλθηκαν!</h4>
+        <p>Η Κορνηλία θα επικοινωνήσει μαζί σου σύντομα.</p>
+      </div>
+    `;
+  } else {
+    modal.innerHTML = `
+      <div class="send-success">
+        <div class="send-success-icon">&#x2705;</div>
+        <h4>Ετοιμάσαμε το μήνυμά σου!</h4>
+        <p>Ολοκλήρωσε την αποστολή στην εφαρμογή που άνοιξε.</p>
+      </div>
+    `;
+  }
+
+  // Reset after 4s
+  setTimeout(() => {
+    closeSendModal(null, true);
+    document.getElementById('contactForm').reset();
+    // Rebuild modal content
+    rebuildSendModal();
+  }, 4000);
+}
+
+function rebuildSendModal() {
+  document.getElementById('sendModal').innerHTML = `
+    <button class="send-modal-close" onclick="closeSendModal(event,true)">&times;</button>
+    <h3>Πώς θέλεις να στείλεις;</h3>
+    <p>Επίλεξε τρόπο επικοινωνίας — θα σου ετοιμάσουμε το μήνυμα αυτόματα.</p>
+    <div class="send-options">
+      <a class="send-option" href="#" onclick="sendVia('whatsapp',event)">
+        <div class="send-option-icon whatsapp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <div class="send-option-text"><span class="send-option-label">WhatsApp</span><span class="send-option-desc">Άμεση συνομιλία μέσω WhatsApp</span></div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" href="#" onclick="sendVia('viber',event)">
+        <div class="send-option-icon viber"><svg viewBox="0 0 24 24"><path d="M11.4 0C9.473.028 5.333.344 3.243 2.26 1.643 3.84 1.073 6.16 1.013 9.02c-.06 2.86-.14 8.22 5.04 9.78h.01l-.01 2.24s-.07.9.56 1.08c.76.24 1.2-.49 1.93-1.27.4-.43.95-1.06 1.36-1.54 3.74.31 6.62-.4 6.95-.51.75-.25 5.01-.79 5.7-6.44.72-5.81-.34-9.49-2.2-11.15C19.31.6 15.97.027 13.6.002c-.3-.003-.59-.003-.87-.003h-1.33z"/></svg></div>
+        <div class="send-option-text"><span class="send-option-label">Viber</span><span class="send-option-desc">Στείλε μήνυμα μέσω Viber</span></div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" href="#" onclick="sendVia('sms',event)">
+        <div class="send-option-icon sms"><svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg></div>
+        <div class="send-option-text"><span class="send-option-label">SMS</span><span class="send-option-desc">Κλασικό γραπτό μήνυμα</span></div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+      <a class="send-option" href="#" onclick="sendVia('email',event)">
+        <div class="send-option-icon emailopt"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+        <div class="send-option-text"><span class="send-option-label">Email</span><span class="send-option-desc">Αποστολή email στην Κορνηλία</span></div>
+        <span class="send-option-arrow">&rarr;</span>
+      </a>
+    </div>
+  `;
+}
+
+// Chat widget
+function toggleChat() {
+  const fab = document.getElementById('chatFab');
+  const panel = document.getElementById('chatPanel');
+  fab.classList.toggle('open');
+  panel.classList.toggle('open');
+}
+
+function getBotReply(text) {
+  const t = text.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  // Location / address
+  if (t.match(/που (ει|βρι)|διευθυνσ|τοποθεσ|address|location|χαρτ|πω[ςσ] (θα )?σας βρ|που μεν/))
+    return 'Βρισκόμαστε στην Πάτρα! Η διεύθυνσή μας είναι: Μιαούλη 64, Πάτρα 262 22. Σε περιμένουμε!';
+  // Phone / contact / how to reach
+  if (t.match(/τηλ[εέ]φων|επικοινων|πω[ςσ] (μπορ|να)|καλ[εέ]σ|παρ[εέ] τηλ|νουμερ|κλει[σς]|ραντεβου|randev|book|appointment/))
+    return 'Μπορείς να μας καλέσεις στο 📞 2610 325 266 ή να συμπληρώσεις τη φόρμα επικοινωνίας στο site μας και θα σε καλέσουμε εμείς!';
+  // Hours / schedule
+  if (t.match(/ωρ[αά]ρι|ωρε[ςσ]|προγραμμ|ποτε|schedule|hours|λειτουργ/))
+    return 'Λειτουργούμε Δευτέρα–Παρασκευή 10:00–21:00 και Σάββατο 10:00–18:00. Δες αναλυτικά το εβδομαδιαίο πρόγραμμα μαθημάτων στο site μας!';
+  // Pilates
+  if (t.match(/pilates|πιλατ/))
+    return 'Προσφέρουμε Pilates καθημερινά 18:00–19:00 και Pilates Ενηλίκων 19:00–20:00 (Δευτέρα–Παρασκευή). Θέλεις να κλείσεις θέση; Πάρε μας στο 2610 325 266!';
+  // Special education
+  if (t.match(/ειδικ[ηή] αγωγ|special/))
+    return 'Τα μαθήματα Ειδικής Αγωγής γίνονται Τρίτη & Πέμπτη, 20:00–21:00. Επικοινώνησε μαζί μας στο 2610 325 266 για περισσότερες πληροφορίες!';
+  // Kids
+  if (t.match(/παιδ[ιί]|kids|children/))
+    return 'Έχουμε Προσαρμοσμένη Φυσική Αγωγή για Παιδιά με ασκήσεις μέσα από παιχνίδι, αναπτυξιακή υποστήριξη και κοινωνική αλληλεπίδραση. Μαθήματα Δευτέρα–Πέμπτη & Σάββατο 17:00–18:00!';
+  // Elderly
+  if (t.match(/ηλικ[ιί]ωμ|elderly|τριτ[ηή] ηλικ/))
+    return 'Τα προγράμματα για ηλικιωμένους περιλαμβάνουν ενδυνάμωση, ισορροπία και Reformer. Γίνονται Δευτέρα, Τετάρτη & Παρασκευή 10:00–12:00. Κάλεσέ μας στο 2610 325 266!';
+  // Reformer
+  if (t.match(/reformer/))
+    return 'Μαθήματα Reformer γίνονται Δευτέρα, Τετάρτη & Παρασκευή 11:00–12:00. Είναι ιδανικά για ενδυνάμωση και ευελιξία!';
+  // Prices / cost
+  if (t.match(/τιμ[εέή]|κοστ|cost|price|πο[σς]ο κ[αά]ν|euro|ευρω/))
+    return 'Οι τιμές εξαρτώνται από το πρόγραμμα και τη συχνότητα. Κάλεσέ μας στο 2610 325 266 ή στείλε μήνυμα μέσω της φόρμας για προσφορά!';
+  // Services / what do you offer
+  if (t.match(/υπηρεσ[ιί]|τι (προσφ|κ[αά]ν)|service|offer/))
+    return 'Προσφέρουμε: Προσαρμοσμένη Φ.Α. για Παιδιά & Ενήλικες, Άσκηση για Ηλικιωμένους, Pilates, Reformer και Ειδική Αγωγή. Τι σε ενδιαφέρει;';
+  // Greeting
+  if (t.match(/^(γει[αά]|hey|hi|hello|καλημ[εέ]ρ|καλησπ[εέ]ρ|χαιρ)/))
+    return 'Γεια σου! Καλώς ήρθες στο Thera! Πώς μπορούμε να σε βοηθήσουμε; 😊';
+  // Thank you
+  if (t.match(/ευχαριστ|thanks|thank you|merci/))
+    return 'Ευχαριστούμε εμείς! Αν χρειαστείς κάτι ακόμα, είμαστε εδώ! 😊';
+  // Fallback
+  return 'Ευχαριστούμε για το μήνυμά σου! Για πιο εξειδικευμένη βοήθεια, κάλεσέ μας στο 📞 2610 325 266 ή συμπλήρωσε τη φόρμα επικοινωνίας και θα σε καλέσουμε εμείς!';
+}
+
+function addBotMsg(text) {
+  const body = document.getElementById('chatBody');
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'chat-msg them';
+  typing.innerHTML = '<span class="typing-dots"><span>.</span><span>.</span><span>.</span></span>';
+  body.appendChild(typing);
+  body.scrollTop = body.scrollHeight;
+  setTimeout(() => {
+    typing.innerHTML = text;
+    body.scrollTop = body.scrollHeight;
+  }, 800 + Math.random() * 600);
+}
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const body = document.getElementById('chatBody');
+  const text = input.value.trim();
+  if (!text) return;
+  const msg = document.createElement('div');
+  msg.className = 'chat-msg me';
+  msg.textContent = text;
+  body.appendChild(msg);
+  input.value = '';
+  body.scrollTop = body.scrollHeight;
+  addBotMsg(getBotReply(text));
+}
+</script>
+</body>
+</html>
